@@ -1,4 +1,5 @@
 import Fighter from '../Fighter';
+import { fightAgainstOne } from '../utils';
 import Battle from './Battle';
 
 export default class PVP extends Battle {
@@ -8,11 +9,6 @@ export default class PVP extends Battle {
   }
 
   fight(): number {
-    while (this.char1.lifePoints >= 0 && this.char2.lifePoints >= 0) {
-      this.char1.attack(this.char2);
-      if (this.char2.lifePoints <= 0) break;
-      this.char2.attack(this.char1);
-    }
-    return this.char1.lifePoints === -1 ? -1 : 1;
+    return fightAgainstOne(this.char1, this.char2);
   }
 }
